@@ -1,4 +1,3 @@
-const actions = ['charge', 'block', 'attack'];
 const reset_instruction_text = '<div class="instruction">(กดแอ็คชั่นเพื่อเริ่มเล่นใหม่)</div>';
 
 let charge = 0;
@@ -120,11 +119,29 @@ function translate_text(action) {
   }
 }
 
+function pick_random(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
 let bot_charge = 0;
 function bot_action() {
-  // NOTE if human has no charge (public information, including the first round), charge
-  // NOTE A player cannot attack if there is no charge
-  let action = charge === 0 ? 'charge' : actions[Math.floor(Math.random() * (bot_charge > 0 ? 3 : 2))];
+  let action;
+  if (round === 1) { // always charge on the first round
+    action = 'charge';
+  } else if (charge === 0) { // if human has no charge (public information), do not block
+    if (bot_charge > 0) {
+      action = pick_random(['charge', 'attack']);
+    } else { // a player cannot attack if there is no charge
+      action = 'charge';
+    }
+  } else {
+    if (bot_charge > 0) {
+      action = pick_random(['charge', 'block', 'attack']);
+    } else { // a player cannot attack if there is no charge
+      action = pick_random(['charge', 'block']);
+    }
+  }
+
   switch(action) {
     case 'charge':
       bot_charge++
