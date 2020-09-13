@@ -1,0 +1,50 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- for Google -->
+  <meta name="description" content="Rock Paper Charge!" />
+  <meta name="keywords" content="nostalgia, childhood, children, game, rock paper scissors, dragon ball, street fighter, n-gram, ngram, ai, artificial intelligence, machine learning, aaronson, oracle" />
+  <meta name="author" content="Puripant Ruchikachorn" />
+
+  <!-- for Facebook -->
+  <meta property="og:title" content="Rock Paper Charge!" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://puripant.ruchikachorn.com/rock-paper-charge/screenshot.png" />
+  <meta property="og:url" content="http://puripant.ruchikachorn.com/rock-paper-charge/" />
+  <meta property="og:description" content="A digital implementation of a common children's game in Thailand that is similar to rock-paper-scissors plus Street Fighter or Dragon Ball with a basic AI player" />
+
+  <!-- for Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Rock Paper Charge!" />
+  <meta name="twitter:description" content="A digital implementation of a common children's game in Thailand that is similar to rock-paper-scissors plus Street Fighter or Dragon Ball with a basic AI player" />
+  <meta name="twitter:image" content="http://puripant.ruchikachorn.com/rock-paper-charge/screenshot.png" />
+
+  <title>Rock Paper Charge!</title>
+  <link href="main.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Chonburi" rel="stylesheet">
+</head>
+
+<body>
+  <div class="header"><span class="light">ตบ &#183; แปะ &#183; </span>ชาร์จ!</div>
+  
+  <div class="description">
+    กดเลือกแอ็คชั่น แล้วบอตจะเลือกด้วย (ไม่แอบดู ไม่โกง ๆ)<br />บอต (ควร) จะเก่งขึ้นเมื่อเล่นผ่านไปหลายรอบ
+    <!-- Choose one of the actions. The robot will pick one too. (No cheating, I promise.)  -->
+  </div>
+  <div class="buttons">
+    <!-- เลือกแอ็คชั่น:<br /> -->
+    <div class="button noselect" onclick="update('charge')"><span class="large">🔋</span><br />ชาร์จ</div>
+    <div class="button noselect" onclick="update('block')"><span class="large">🛡</span><br />กัน</div>
+    <div class="button noselect" id="charge-button" onclick="update('attack')"><span class="large">💥</span><br />ปล่อยพลัง (<span id="charge-number">0</span>)</div>
+  </div>
+  <div class="scoreboard">
+    🙂 <span id='human-score'>0</span> : <span id='bot-score'>0</span> 🤖
+  </div>
+  <div id="log">
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

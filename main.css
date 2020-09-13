@@ -1,0 +1,97 @@
+body {
+  width: 100%;
+  max-width: 375px;
+  margin: 1em auto;
+  background-color: white;
+  display: block;
+  font-family: sans-serif;
+  font-size: 10px;
+}
+
+.header {
+  width: 100%;
+  margin: 40px auto 20px auto;
+  text-align: center;
+  font-family: 'Chonburi', sans-serif;
+  font-size: 4em;
+  color: rgb(235, 48, 124);
+}
+.header .light {
+  color: #333;
+}
+.description {
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+  font-size: 1.5em;
+}
+.scoreboard {
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+  font-family: 'Chonburi', sans-serif;
+  font-size: 3em;
+  color: #333;
+}
+
+#log {
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+}
+#log .round {
+  color: dimgray;
+}
+#log .announcement {
+  margin: 20px auto;
+  font-family: 'Chonburi', sans-serif;
+  font-size: 2em;
+}
+#log .instruction {
+  margin: -20px auto 20px auto;
+}
+
+.buttons {
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+  font-size: 1.5em;
+}
+.button {
+  display: inline-block;
+  width: 100px;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 1em;
+  background-color: white;
+  border: 1px solid rgb(235, 48, 124);
+  color: rgb(235, 48, 124);
+}
+.button:hover {
+  background-color: rgb(235, 48, 124);
+  color: white;
+  cursor: pointer;
+}
+.button.disabled{
+  border: 1px solid dimgray;
+  color: dimgray;
+}
+.button.disabled:hover {
+  background-color: white;
+  border: 1px solid dimgray;
+  color: dimgray;
+  cursor: not-allowed;
+}
+.button .large {
+  font-size: 3em;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
