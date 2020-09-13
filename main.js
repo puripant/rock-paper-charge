@@ -20,6 +20,10 @@ let bot_score = document.getElementById('bot-score');
 update_buttons();
 
 function update(human) {
+  round++;
+
+  let bot = bot_action();
+
   switch(human) {
     case 'charge':
       charge++
@@ -37,8 +41,7 @@ function update(human) {
   }
   update_buttons();
 
-  let bot = bot_action();
-  let log_text = `<div><span class='round'>รอบที่ ${++round}:</span> 🙂 ${translate_text(human)} vs ${translate_text(bot)} 🤖</div>`;
+  let log_text = `<div><span class='round'>รอบที่ ${round}:</span> 🙂 ${translate_text(human)} vs ${translate_text(bot)} 🤖</div>`;
   if (reset_log) {
     log.innerHTML = log_text;
     reset_log = false;
@@ -56,7 +59,7 @@ function update(human) {
     scores['bot']++;
     bot_score.innerHTML = scores['bot'];
 
-    log.insertAdjacentHTML('afterbegin', '<div class="announcement">หุ่นยนต์ครองโลก! 🦾</div>' + reset_instruction_text);
+    log.insertAdjacentHTML('afterbegin', '<div class="announcement">บอตครองโลก! 🦾</div>' + reset_instruction_text);
   }
   if ((human === 'attack' && bot === 'charge') || (human === 'charge' && bot === 'attack')) {
     const game_num = scores['human'] + scores['bot'];
@@ -101,6 +104,7 @@ function update_buttons() {
 
 function reset_game() {
   charge = 0;
+  bot_charge = 0;
   update_buttons();
 
   round = 0;
@@ -116,7 +120,22 @@ function translate_text(action) {
   }
 }
 
-//TODO make it smart
+let bot_charge = 0;
 function bot_action() {
-  return actions[Math.floor(Math.random() * actions.length)]
+  // NOTE if human has no charge (public information, including the first round), charge
+  // NOTE A player cannot attack if there is no charge
+  let action = charge === 0 ? 'charge' : actions[Math.floor(Math.random() * (bot_charge > 0 ? 3 : 2))];
+  switch(action) {
+    case 'charge':
+      bot_charge++
+      break;
+    case 'block':
+      break;
+    case 'attack':
+      bot_charge--;
+      break;
+    default: break;
+  }
+
+  return action;
 }
