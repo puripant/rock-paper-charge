@@ -13,6 +13,7 @@ let scores = {
   'human': 0,
   'bot': 0
 }
+let human_emoji= document.getElementById('human-emoji');
 let human_score = document.getElementById('human-score');
 let bot_score = document.getElementById('bot-score');
 
@@ -48,16 +49,43 @@ function update(human) {
   if (human === 'attack' && bot === 'charge') {
     scores['human']++;
     human_score.innerHTML = scores['human'];
-    //TODO change emoji according to score 🥳😆😁😄🙂😅🤨😔😩🥺
 
     log.insertAdjacentHTML('afterbegin', '<div class="announcement">มนุษย์ชนะ! 🎉</div>' + reset_instruction_text);
-    reset_game();
   }
   if (human === 'charge' && bot === 'attack') {
     scores['bot']++;
     bot_score.innerHTML = scores['bot'];
 
     log.insertAdjacentHTML('afterbegin', '<div class="announcement">หุ่นยนต์ครองโลก! 🦾</div>' + reset_instruction_text);
+  }
+  if ((human === 'attack' && bot === 'charge') || (human === 'charge' && bot === 'attack')) {
+    const game_num = scores['human'] + scores['bot'];
+    // const diff = scores['human'] - scores['bot'];
+    const ratio =  scores['human'] / game_num;
+    // if (game_num >= 10) {
+    if (ratio > 0.9) {
+      human_emoji.innerHTML = '🥳';
+    } else if (ratio > 0.8) {
+      human_emoji.innerHTML = '😆';
+    } else if (ratio > 0.7) {
+      human_emoji.innerHTML = '😁';
+    } else if (ratio > 0.6) {
+      human_emoji.innerHTML = '😄';
+    } else if (ratio > 0.5) {
+      human_emoji.innerHTML = '🙂';
+    } else if (ratio > 0.4) {
+      human_emoji.innerHTML = '😅';
+    } else if (ratio > 0.3) {
+      human_emoji.innerHTML = '🤨';
+    } else if (ratio > 0.2) {
+      human_emoji.innerHTML = '😔';
+    } else if (ratio > 0.1) {
+      human_emoji.innerHTML = '😩';
+    } else {
+      human_emoji.innerHTML = '🥺';
+    }
+    // }
+
     reset_game();
   }
 }
